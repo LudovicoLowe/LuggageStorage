@@ -1,0 +1,68 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">LuggageStorage</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/">Home</a>
+      <a class="nav-item nav-link" href="/about">About</a>
+      <% if user_signed_in? %>
+        <a class="nav-item nav-link" href="/map">Map</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.name %></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if current_user.place %>
+              <a class="dropdown-item" href="/places/<%= current_user.place.id %>"><%= current_user.place.name %></a>
+            <% else %>
+              <a class="dropdown-item" href="/new_place">Create place</a>
+            <% end %>
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/edit_profile">Edit profile</a>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col" align="center">
+      <h3>Profile Picture</h3>
+      <%= image_tag current_user.avatar.url, :size => "200x200", class: "round-image" %>
+    </div>
+    <div class="col">
+      <h3>Informations</h3>
+      <strong>Name:</strong> <%= current_user.name %><br>
+      <strong>Surname:</strong> <%= current_user.surname %><br>
+      <strong>Phone number:</strong> <%= current_user.phone_number %><br>
+      <strong>Email:</strong> <%= current_user.email %><br>
+      <strong>Registered:</strong> <%= current_user.created_at %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="container" align="center">
+  <% if current_user.place %>
+    <a class="btn btn-primary" href="/places/<%= current_user.place.id %>">Go to your place! &raquo;</a>
+  <% else %>
+    <a class="btn btn-primary" href="/new_place">Create your place now! &raquo;</a>
+  <% end %>
+</div>
+
+<hr>
+
+<footer class="footer" align="center">
+  <div class="container" align="center">
+    <span class="text-muted" align="center">© 2018 Copyright: Paolo Rollo, Ludovico Lowe</span>
+  </div>
+</footer>
+
+<br>

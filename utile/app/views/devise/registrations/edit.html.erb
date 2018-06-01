@@ -1,0 +1,107 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">LuggageStorage</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/">Home</a>
+      <a class="nav-item nav-link" href="/about">About</a>
+      <% if user_signed_in? %>
+        <a class="nav-item nav-link" href="/map">Map</a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.name %></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if current_user.place %>
+              <a class="dropdown-item" href="/places/<%= current_user.place.id %>"><%= current_user.place.name %></a>
+            <% else %>
+              <a class="dropdown-item" href="/new_place">Create place</a>
+            <% end %>
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/edit_profile">Edit profile</a>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <a class="nav-item nav-link">Not logged</a>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<br>
+
+<div class="container">
+
+  <h3>Edit your informations</h3>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {method: :put}) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control', autocomplete: "off" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :email %>
+      <%= f.email_field :email, class: 'form-control', autocomplete: "off" %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <span class="label label-info">Currently waiting confirmation for: <%= resource.unconfirmed_email %></span>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password %>
+      <%= f.password_field :password, autocomplete: "off", class: 'form-control' %>
+      <small id="emailHelp" class="form-text text-muted">Leave blank if no change is needed.</small>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :password_confirmation %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :phone_number %><br/>
+      <%= f.text_field :phone_number, autocomplete: "off", class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :avatar %>
+      <div class="col" align="left">
+        <%= f.file_field :avatar, class: "file" %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="form-group">
+      <%= f.label :current_password %>
+      <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+      <small id="emailHelp" class="form-text text-muted">Current password is needed to confirm your changes</small>
+    </div>
+
+    <%= f.submit "Update", class: 'btn btn-primary' %>
+  <% end %>
+
+  <hr>
+
+  <h3>Delete your account</h3>
+
+  <p><%= button_to "Delete account", registration_path(resource_name), class: 'btn btn-danger',
+                  data: {confirm: "Are you sure?"}, method: :delete %>
+  </p>
+
+</div>
+
+<hr>
+
+<footer class="footer" align="center">
+  <div class="container" align="center">
+    <span class="text-muted" align="center">© 2018 Copyright: Paolo Rollo, Ludovico Lowe</span>
+  </div>
+</footer>
+
+<br>

@@ -1,0 +1,87 @@
+<script type="text/javascript">
+  function useValue(){
+    let id = this.id;
+    $.ajax({
+        url: "Pages/change_current_place",
+        mode: set,
+        contentType: "application/json",
+        data: JSON.stringify(id)
+    });
+  }
+</script>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand">LuggageStorage</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link" href="/">Home</a>
+      <a class="nav-item nav-link" href="/about">About</a>
+      <% if user_signed_in? %>
+        <a class="nav-item nav-link active" href="/map">Map <span class="sr-only">(current)</span></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= current_user.name %></a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <% if current_user.place %>
+              <a class="dropdown-item" href="/places/<%= current_user.place.id %>"><%= current_user.place.name %></a>
+            <% else %>
+              <a class="dropdown-item" href="/new_place">Create place</a>
+            <% end %>
+            <a class="dropdown-item" href="/profile">Profile</a>
+            <a class="dropdown-item" href="/edit_profile">Edit profile</a>
+            <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <a class="nav-item nav-link">Not logged</a>
+      <% end %>
+    </div>
+  </div>
+</nav>
+
+<hr>
+
+<div class="container" align="center">
+  <div class="row">
+    <div class="col md-6 border-right">
+      <h3>Nearest places</h3>
+      <% @places.each do |i| %>
+        <div class="container">
+          <div class="row">
+            <div class="col md-6 border-left" align="left">
+              <strong>Name</strong>: <%= "#{i.name}" %><br>
+              <strong>State</strong>: <%= "#{i.state}" %><br>
+              <strong>City</strong>: <%= "#{i.city}" %><br>
+              <strong>Address</strong>: <%= "#{i.address}" %><br>
+              <strong>CAP</strong>: <%= "#{i.cap}" %><br>
+            </div>
+            <div class="col md-6" align="right">
+              <br>
+              <p align="center"><button class="btn btn-primary" id="<%="#{i.id}" %>" onclick="useValue();">Show &raquo;</button></p>
+              <p align="center"><a class="btn btn-primary" href="/places/<%="#{i.id}" %>" >Goto &raquo;</a></p>
+            </div>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+    </div>
+    <div class="col md-6 border-left">
+      <h3>Where?</h3>
+      <br>
+      <div id="mapviewer" align="center">
+        <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{Place.find(@curr).latitude},#{Place.find(@curr).longitude}&markers=#{Place.find(@curr).latitude},#{Place.find(@curr).longitude}&zoom=18&size=640x640&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<footer class="footer" align="center">
+  <div class="container" align="center">
+    <span class="text-muted" align="center">© 2018 Copyright: Paolo Rollo, Ludovico Lowe</span>
+  </div>
+</footer>
