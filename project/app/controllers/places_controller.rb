@@ -13,6 +13,7 @@ class PlacesController < ApplicationController
   # GET /places/1.json
   def show
     @place = Place.find(params[:id])
+    @reviews = Review.where(place_id: @place)
   end
 
   # GET /places/new
@@ -73,7 +74,7 @@ class PlacesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :state, :city, :address, :cap, :latitude, :longitude)
+      params.require(:place).permit(:name, :state, :city, :address, :cap, :latitude, :longitude, :description)
     end
 
     def correct_user

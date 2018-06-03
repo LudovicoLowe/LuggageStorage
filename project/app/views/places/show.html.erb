@@ -55,8 +55,20 @@
   <hr>
   <div class="row">
     <div class="col" align="center">
-      <h3>Ratings</h3>
-      0.0 out of 5
+      <h3>Description</h3>
+      <%= @place.description %>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col" align="center">
+      <h3>Reviews</h3>
+      <% @reviews.each do |review| %>
+        <%= review.comment %> | <%= review.rating %>
+        <br>
+      <% end %>
+      <br>
+      <%= link_to "Write a review", new_place_review_path(@place), class: "btn btn-primary" %>
     </div>
   </div>
 </div>

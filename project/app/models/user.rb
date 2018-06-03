@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable, :omniauthable, omniauth_providers: %i[facebook]
 
   has_one :place
+  has_many :reviews
   has_attached_file :avatar, validate_media_type: false
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 

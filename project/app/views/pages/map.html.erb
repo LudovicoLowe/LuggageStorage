@@ -72,7 +72,7 @@
       <h3>Where?</h3>
       <br>
       <div id="mapviewer" align="center">
-        <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{Place.find(@curr).latitude},#{Place.find(@curr).longitude}&markers=#{Place.find(@curr).latitude},#{Place.find(@curr).longitude}&zoom=18&size=640x640&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8", class: 'img-fluid img-rounded' %>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d2498.3422200738382!2d<%= Place.find(@curr).longitude %>!3d<%= Place.find(@curr).latitude %>!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1528041937490" width="640" height="640" frameborder="0" style="border:0" allowfullscreen></iframe>
       </div>
     </div>
   </div>

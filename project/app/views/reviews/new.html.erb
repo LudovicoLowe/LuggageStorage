@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav">
       <a class="nav-item nav-link" href="/">Home</a>
-      <a class="nav-item nav-link active" href="/about">About <span class="sr-only">(current)</span></a>
+      <a class="nav-item nav-link" href="/about">About <span class="sr-only">(current)</span></a>
       <% if user_signed_in? %>
         <a class="nav-item nav-link" href="/map">Map</a>
         <li class="nav-item dropdown">
@@ -27,26 +27,23 @@
     </div>
   </div>
 </nav>
+
 <br>
 <div class="container" align="center">
-  <h1>About us</h1>
-  <p class="lead">Learn about the first luggage storing website.</p>
-  <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis malesuada odio eget interdum. Donec tincidunt
-    dolor lectus, vel fermentum mauris ultrices eget. Vivamus nisl augue, pulvinar non ligula ac, ornare iaculis velit.
-    Morbi at rutrum sapien. Sed non facilisis nibh. Mauris scelerisque, ante et rhoncus vulputate, mi ex semper elit, a
-    dapibus odio nunc ac est. Curabitur non pretium dui. Integer feugiat sagittis tincidunt. In libero tellus, blandit
-    sit amet suscipit eget, convallis eget arcu. Mauris commodo in nisl non dignissim.
-
-    Etiam tincidunt molestie lectus non condimentum. Curabitur cursus venenatis luctus. Donec aliquam odio mauris, sed
-    congue massa dapibus sed. Sed vel hendrerit urna. Aliquam venenatis nisi nulla, eu facilisis lectus faucibus
-    ullamcorper. Donec nec massa quam. Duis tincidunt consectetur purus ut porttitor. Etiam sit amet magna auctor,
-    suscipit lacus a, scelerisque elit. Suspendisse tempus ex eget ex porttitor ullamcorper. Vestibulum sed tortor vitae
-    mauris scelerisque porta. Cras volutpat pellentesque tincidunt. Maecenas nec sem blandit, aliquam erat sed,
-    facilisis turpis. Donec fringilla neque nec elit commodo, at sollicitudin neque egestas. Maecenas convallis volutpat
-    suscipit. Curabitur libero neque, consectetur non mauris nec, porttitor ullamcorper lacus. </p>
+  <%= form_for [@place, @review] do |f| %>
+    <div class="form-group">
+      <%= f.text_area :comment %><br>
+    </div>
+    <div class="form-group">
+      <%= f.number_field :rating %><br>
+    </div>
+    <div class="actions">
+      <input type="submit" name="commit" value="Create review" class="btn btn-primary" data-disable-with="Create review"/>
+    </div>
+  <% end %>
 </div>
 
-<hr>
+<br>
 
 <footer class="footer" align="center">
   <div class="container" align="center">
