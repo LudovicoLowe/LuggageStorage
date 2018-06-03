@@ -5,6 +5,7 @@ class Place < ApplicationRecord
   after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
 
   belongs_to :user
+  has_many :reviews
   has_attached_file :avatar, styles: { small: "200x200>", medium: "300x300>", thumb: "100x100>" }
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
