@@ -1,15 +1,3 @@
-<script type="text/javascript">
-  function useValue(){
-    let id = this.id;
-    $.ajax({
-        url: "Pages/change_current_place",
-        mode: set,
-        contentType: "application/json",
-        data: JSON.stringify(id)
-    });
-  }
-</script>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand">LuggageStorage</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -60,7 +48,7 @@
             </div>
             <div class="col md-6" align="right">
               <br>
-              <p align="center"><button class="btn btn-primary" id="<%="#{i.id}" %>" onclick="useValue();">Show &raquo;</button></p>
+              <p align="center"><button class="btn btn-primary" id="<%="#{i.id}" %>">Show &raquo;</button></p>
               <p align="center"><a class="btn btn-primary" href="/places/<%="#{i.id}" %>" >Goto &raquo;</a></p>
             </div>
           </div>
