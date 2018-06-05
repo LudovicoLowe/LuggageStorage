@@ -35,7 +35,7 @@
       <%= f.text_area :comment %><br>
     </div>
     <div class="form-group">
-      <%= f.number_field :rating %><br>
+      <%= f.number_field :rating, min: 1, max: 5 %><br>
     </div>
     <div class="actions">
       <input type="submit" name="commit" value="Create review" class="btn btn-primary" data-disable-with="Create review"/>
@@ -45,8 +45,4 @@
 
 <br>
 
-<footer class="footer" align="center">
-  <div class="container" align="center">
-    <span class="text-muted" align="center">Done by: Paolo Rollo, Ludovico Lowe</span>
-  </div>
-</footer>
+<hr>

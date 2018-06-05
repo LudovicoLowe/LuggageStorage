@@ -41,7 +41,8 @@
       <strong>CAP:</strong> <%= @place.cap %><br>
       <strong>Owner:</strong> <%= @place.user.name %> <%= @place.user.surname %><br>
       <strong>Phone number:</strong> <%= @place.user.phone_number %><br>
-      <strong>Email:</strong> <%= @place.user.email %><br><br>
+      <strong>Email:</strong> <%= @place.user.email %><br>
+      <strong>Rating:</strong> <span class="star-rating" data-score="<%= @avg_rating %>"></span><br><br>
       <% if correct_user?(@place) %>
         <%= link_to 'Edit informations', edit_place_path(@place), class: "btn btn-primary" %>
         <%= link_to 'Delete place', place_path, class: "btn btn-danger", method: :delete %>
@@ -73,12 +74,27 @@
     <div class="col" align="center">
       <h3>Reviews</h3>
       <% @reviews.each do |review| %>
-        <%= review.comment %> | <%= review.rating %>
+        <% case review.rating %>
+        <% when 1 %>
+          <img src="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
+        <% when 2 %>
+          <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
+        <% when 3 %>
+          <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
+        <% when 4 %>
+          <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-off.png">
+        <% when 5 %>
+          <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png">
+        <% end %>
+        <%= review.comment %>
         <br>
       <% end %>
       <br>
       <% if user_signed_in? %>
-        <%= link_to "Write a review", new_place_review_path(@place), class: "btn btn-primary" %>
+        <% if correct_user?(@place) %>
+        <% else %>
+          <%= link_to "Write a review", new_place_review_path(@place), class: "btn btn-primary" %>
+        <% end %>
       <% else %>
         <a class="btn btn-primary" href="/login">Login to write a review</a>
       <% end %>

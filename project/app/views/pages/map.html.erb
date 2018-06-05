@@ -45,6 +45,14 @@
               <strong>City</strong>: <%= "#{i.city}" %><br>
               <strong>Address</strong>: <%= "#{i.address}" %><br>
               <strong>CAP</strong>: <%= "#{i.cap}" %><br>
+              <% if i.reviews.present? %>
+                <strong>Number of reviews</strong>: <%= "#{i.reviews.count}" %><br>
+                <strong>Rating</strong>: <span class="star-rating" data-score="<%= "#{i.reviews.average(:rating)}" %>"></span>
+              <% else %>
+                <strong>No reviews yet!</strong> <% if !correct_user?(i) %>
+                  <%= link_to "Write one", new_place_review_path(i)%><br>
+                  <% end %>
+              <% end %>
             </div>
             <div class="col md-6" align="right">
               <br>
@@ -60,7 +68,7 @@
       <h3>Where?</h3>
       <br>
       <div id="mapviewer" align="center">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d2498.3422200738382!2d<%= Place.find(@curr).longitude %>!3d<%= Place.find(@curr).latitude %>!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1528041937490" width="640" height="640" frameborder="0" style="border:0" allowfullscreen></iframe>
+
       </div>
     </div>
   </div>
