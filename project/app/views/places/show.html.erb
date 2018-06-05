@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand">LuggageStorage</a>
+  <a class="navbar-brand"><img src="../../assets/logo.png"></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,8 +7,8 @@
     <div class="navbar-nav">
       <a class="nav-item nav-link active" href="/">Home <span class="sr-only">(current)</span></a>
       <a class="nav-item nav-link" href="/about">About</a>
+      <a class="nav-item nav-link" href="/map">Map</a>
       <% if user_signed_in? %>
-        <a class="nav-item nav-link" href="/map">Map</a>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <%= current_user.name %></a>
@@ -44,6 +44,7 @@
       <strong>Email:</strong> <%= @place.user.email %><br><br>
       <% if correct_user?(@place) %>
         <%= link_to 'Edit informations', edit_place_path(@place), class: "btn btn-primary" %>
+        <%= link_to 'Delete place', place_path, class: "btn btn-danger", method: :delete %>
       <% end %>
     </div>
     <div class="col">
@@ -56,7 +57,15 @@
   <div class="row">
     <div class="col" align="center">
       <h3>Description</h3>
-      <%= @place.description %>
+      <% if @place.description %>
+        <%= @place.description %>
+      <% else %>
+        <% if correct_user?(@place) %>
+          <%= link_to 'Edit description', edit_place_path(@place), class: "btn btn-primary" %>
+        <% else %>
+          This place has no description yet!
+        <% end %>
+      <% end %>
     </div>
   </div>
   <hr>
@@ -68,7 +77,11 @@
         <br>
       <% end %>
       <br>
-      <%= link_to "Write a review", new_place_review_path(@place), class: "btn btn-primary" %>
+      <% if user_signed_in? %>
+        <%= link_to "Write a review", new_place_review_path(@place), class: "btn btn-primary" %>
+      <% else %>
+        <a class="btn btn-primary" href="/login">Login to write a review</a>
+      <% end %>
     </div>
   </div>
 </div>
