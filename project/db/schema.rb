@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180603155607) do
+ActiveRecord::Schema.define(version: 20180605112826) do
 
   create_table "places", force: :cascade do |t|
     t.string "name"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180603155607) do
     t.float "latitude"
     t.float "longitude"
     t.text "description"
+    t.string "image"
     t.index ["user_id"], name: "index_places_on_user_id"
   end
 
@@ -69,6 +70,8 @@ ActiveRecord::Schema.define(version: 20180603155607) do
     t.datetime "avatar_updated_at"
     t.string "provider"
     t.string "uid"
+    t.boolean "admin", default: false
+    t.string "image"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

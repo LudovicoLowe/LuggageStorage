@@ -34,19 +34,19 @@
   <div class="row">
     <div class="col" align="center">
       <h3>Profile Picture</h3>
-      <% if current_user.image? %>
-        <%= image_tag current_user.image_url, :size => "300x300" %>
+      <% if @user.image? %>
+        <%= image_tag @user.image_url, :size => "300x300" %>
       <% else %>
         <img src="../../assets/placeholder2.png"><br>
       <% end %>
     </div>
     <div class="col">
       <h3>Informations</h3>
-      <strong>Name:</strong> <%= current_user.name %><br>
-      <strong>Surname:</strong> <%= current_user.surname %><br>
-      <strong>Phone number:</strong> <%= current_user.phone_number %><br>
-      <strong>Email:</strong> <%= current_user.email %><br>
-      <strong>Registered:</strong> <%= current_user.created_at %>
+      <strong>Name:</strong> <%= @user.name %><br>
+      <strong>Surname:</strong> <%= @user.surname %><br>
+      <strong>Phone number:</strong> <%= @user.phone_number %><br>
+      <strong>Email:</strong> <%= @user.email %><br>
+      <strong>Registered:</strong> <%= @user.created_at %>
     </div>
   </div>
 </div>
@@ -54,10 +54,10 @@
 <hr>
 
 <div class="container" align="center">
-  <% if current_user.place %>
-    <a class="btn btn-primary" href="/places/<%= current_user.place.id %>">Go to your place! &raquo;</a>
+  <% if @user.place %>
+    <a class="btn btn-primary" href="/places/<%= @user.place.id %>">Go to his place! &raquo;</a>
   <% else %>
-    <a class="btn btn-primary" href="/new_place">Create your place now! &raquo;</a>
+    This user has not created a place yet!
   <% end %>
 </div>
 

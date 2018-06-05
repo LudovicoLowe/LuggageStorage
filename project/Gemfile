@@ -43,6 +43,7 @@ gem 'gmaps4rails'
 gem 'omniauth-facebook'
 gem 'bootstrap-social-rails'
 gem 'font-awesome-rails'
+gem 'carrierwave'
 
 
 group :development, :test do

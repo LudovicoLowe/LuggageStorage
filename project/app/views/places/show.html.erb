@@ -39,7 +39,7 @@
       <strong>City:</strong> <%= @place.city %><br>
       <strong>Address:</strong> <%= @place.address %><br>
       <strong>CAP:</strong> <%= @place.cap %><br>
-      <strong>Owner:</strong> <%= @place.user.name %> <%= @place.user.surname %><br>
+      <strong>Owner:</strong> <a href="/users/<%= @place.user.id %>"><%= @place.user.name %> <%= @place.user.surname %></a><br>
       <strong>Phone number:</strong> <%= @place.user.phone_number %><br>
       <strong>Email:</strong> <%= @place.user.email %><br>
       <strong>Rating:</strong> <span class="star-rating" data-score="<%= @avg_rating %>"></span><br><br>
@@ -50,7 +50,14 @@
     </div>
     <div class="col">
       <h3>Place Pictures</h3>
-      <%= image_tag @place.avatar.url, :size => "300x300" %>
+      <% if @place.image? %>
+        <%= image_tag @place.image_url, :size => "500x300" %>
+      <% else %>
+        <img src="../../assets/placeholder1.png"><br>
+        <% if correct_user?(@place) %>
+          <small>No image uploaded yet. Consider editing place page</small>
+        <% end %>
+      <% end %>
     </div>
   </div>
 

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   get "/profile" => "pages#profile"
   get "/places" => redirect("/map")
   get "/new_place" => "places#new"
-
+  get "/users/:id" => "users#show"
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/edit_profile" => "devise/registrations#edit"

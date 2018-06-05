@@ -12,7 +12,7 @@
   <% end %>
   <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, id: :place_name, class: "form-control", :autocomplete => :off  %>
+    <%= form.text_field :name, id: :place_name, class: "form-control", :autocomplete => :off %>
   </div>
 
   <div class="form-group">
@@ -31,13 +31,18 @@
   </div>
 
   <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :place_description, class: "form-control", :autocomplete => :off  %>
+    <%= form.label :cap %>
+    <%= form.text_field :cap, id: :place_cap, class: "form-control", :autocomplete => :off  %>
   </div>
 
   <div class="form-group">
-    <%= form.label :cap %>
-    <%= form.text_field :cap, id: :place_cap, class: "form-control", :autocomplete => :off  %>
+    <%= form.label :image %>
+    <%= form.file_field :image, id: :place_image, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :place_description, class: "form-control", :autocomplete => :off %>
   </div>
 
   <div class="actions">
