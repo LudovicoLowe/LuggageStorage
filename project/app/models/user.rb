@@ -18,6 +18,7 @@ class User < ApplicationRecord
       user.name = auth.info.name
       user.image = auth.info.image
       user.phone_number = auth.info.phone
+      user.logged_with_facebook = true
       user.skip_confirmation!
     end
   end

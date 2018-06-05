@@ -79,12 +79,14 @@
     </div>
 
     <hr>
-
-    <div class="form-group">
-      <%= f.label :current_password %>
-      <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
-      <small id="emailHelp" class="form-text text-muted">Current password is needed to confirm your changes</small>
-    </div>
+    <% if current_user.logged_with_facebook %>
+    <% else %>
+      <div class="form-group">
+        <%= f.label :current_password %>
+        <%= f.password_field :current_password, autocomplete: "off", class: 'form-control' %>
+        <small id="emailHelp" class="form-text text-muted">Current password is needed to confirm your changes</small>
+      </div>
+    <% end %>
 
     <%= f.submit "Update", class: 'btn btn-primary' %>
   <% end %>

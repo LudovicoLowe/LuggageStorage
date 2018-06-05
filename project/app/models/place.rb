@@ -2,7 +2,7 @@ class Place < ApplicationRecord
   validates :user_id, presence: true
   validates :name, :state, :city, :address, :cap, presence: true
   geocoded_by :full_address
-  after_validation :geocode, if: ->(obj){ obj.address.present? and obj.address_changed? }
+  after_validation :geocode
 
   mount_uploader :image, ImageUploader
 
@@ -12,7 +12,7 @@ class Place < ApplicationRecord
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
 
   def full_address
-    [state, city, address].compact.join(',')
+    [state, city, address, cap].join(',')
   end
 
 end
