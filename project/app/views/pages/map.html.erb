@@ -68,7 +68,11 @@
       <h3>Where?</h3>
       <br>
       <div id="mapviewer" align="center">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2968.5776706110155!2d<%= @geostats.lng %>!3d<%= @geostats.lat %>!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1528220322829" width="540" height="540" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <% if @geostats == "nope" %>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d95046.26218067014!2d12.50884296433387!3d41.88864831411424!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1528811167517" width="540" height="540" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <% else %>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d2968.5776706110155!2d<%= @geostats.lng %>!3d<%= @geostats.lat %>!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sit!2sit!4v1528220322829" width="540" height="540" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <% end %>
       </div>
     </div>
   </div>

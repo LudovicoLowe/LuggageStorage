@@ -12,11 +12,19 @@ class PagesController < ApplicationController
   def map
     @places = Place.all
     if params[:id]==nil
-      @curr = Place.first.id
+      @curr = "nope"
     else
-      @curr = Place.find(params[:id]).id
+      if Place.find(params[:id])
+        @curr = Place.find(params[:id]).id
+      else
+        redirect_to(map_path)
+      end
     end
-    @geostats = Geokit::Geocoders::GoogleGeocoder.geocode Place.find(@curr).full_address
+    if @curr != "nope"
+      @geostats = Geokit::Geocoders::GoogleGeocoder.geocode Place.find(@curr).full_address
+    else
+      @geostats = "nope"
+    end
   end
 
   def profile

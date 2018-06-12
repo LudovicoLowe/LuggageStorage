@@ -21,12 +21,12 @@
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
           <%= f.label :email %><br/>
-          <%= f.email_field :email, autofocus: true, :autocomplete => :off, class: "form-control" %>
+          <%= f.email_field :email, autofocus: true, :autocomplete => :off, class: "form-control", id: "login_email" %>
         </div>
 
         <div class="form-group">
           <%= f.label :password %><br/>
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "login_password" %>
           <small id="emailHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
         </div>
 
@@ -45,22 +45,22 @@
         <%= devise_error_messages! %>
         <div class="form-group">
           <%= f.label :name %>
-          <%= f.text_field :name, class: 'form-control', :autocomplete => :off  %>
+          <%= f.text_field :name, class: 'form-control', :autocomplete => :off, id: "reg_name" %>
         </div>
 
         <div class="form-group">
           <%= f.label :surname %>
-          <%= f.text_field :surname, class: 'form-control', :autocomplete => :off  %>
+          <%= f.text_field :surname, class: 'form-control', :autocomplete => :off, id: "reg_surname"  %>
         </div>
 
         <div class="form-group">
           <%= f.label :email %><br/>
-          <%= f.email_field :email, autofocus: true, :autocomplete => :off, class: "form-control" %>
+          <%= f.email_field :email, autofocus: true, :autocomplete => :off, class: "form-control", id: "reg_email" %>
         </div>
 
         <div class="form-group">
           <%= f.label :phone_number %><br/>
-          <%= f.text_field :phone_number, class: "form-control", :autocomplete => :off  %>
+          <%= f.text_field :phone_number, class: "form-control", :autocomplete => :off, id: "reg_phone"  %>
         </div>
 
         <div class="form-group">
@@ -68,12 +68,12 @@
           <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br/>
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control", id: "reg_psw"%>
         </div>
 
         <div class="form-group">
           <%= f.label :password_confirmation %><br/>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control", id: "reg_conf_psw" %>
           <small id="emailHelp" class="form-text text-muted">We'll never share your data with anyone else.</small>
         </div>
 

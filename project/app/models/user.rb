@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :lockable, :omniauthable, omniauth_providers: %i[facebook]
 
+  validates :name, :presence => true
+  validates :surname, :presence => true
+  validates :phone_number, :presence => true
+  validates :email, :presence => true, :uniqueness => true
+
   has_one :place
   has_many :reviews
   has_attached_file :avatar, validate_media_type: false
