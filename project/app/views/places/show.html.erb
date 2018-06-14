@@ -45,7 +45,7 @@
       <strong>Rating:</strong> <span class="star-rating" data-score="<%= @avg_rating %>"></span><br><br>
       <% if correct_user?(@place) || current_user.admin %>
         <%= link_to 'Edit informations', edit_place_path(@place), class: "btn btn-primary" %>
-        <%= link_to 'Delete place', place_path, class: "btn btn-danger", method: :delete %>
+        <%= link_to 'Delete place', place_path(@place), class: "btn btn-danger", method: :delete %>
       <% end %>
     </div>
     <div class="col">

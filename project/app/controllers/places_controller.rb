@@ -64,7 +64,9 @@ class PlacesController < ApplicationController
   # DELETE /places/1
   # DELETE /places/1.json
   def destroy
-    @place.destroy
+    @reviews = Review.where(place_id: @place)
+    @reviews.delete_all
+    Place.find(params[:id]).delete
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'Place was successfully destroyed.' }
       format.json { head :no_content }
@@ -84,7 +86,7 @@ class PlacesController < ApplicationController
 
     def correct_user
       place = Place.find(params[:id])
-      unless place.user == current_user
+      unless ((place.user == current_user)||current_user.admin)
         redirect_to root_path, notice: "No access"
       end
     end
