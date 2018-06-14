@@ -32,10 +32,10 @@
 <div class="container" align="center">
   <%= form_for [@place, @review] do |f| %>
     <div class="form-group">
-      <%= f.text_area :comment %><br>
+      <%= f.text_area :comment, id: "comment" %><br>
     </div>
     <div class="form-group">
-      <%= f.number_field :rating, min: 1, max: 5 %><br>
+      <%= f.number_field :rating, min: 1, max: 5, id: "rating" %><br>
     </div>
     <div class="actions">
       <input type="submit" name="commit" value="Create review" class="btn btn-primary" data-disable-with="Create review"/>

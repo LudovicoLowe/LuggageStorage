@@ -88,4 +88,5 @@ class PlacesController < ApplicationController
         redirect_to root_path, notice: "No access"
       end
     end
+
 end

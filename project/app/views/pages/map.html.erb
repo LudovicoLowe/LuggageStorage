@@ -57,7 +57,7 @@
             <div class="col md-6" align="right">
               <br>
               <p align="center"><%= link_to "Show", {:controller => 'pages', :action => 'map', :id => i.id}, class: "btn btn-primary"%>
-              <p align="center"><a class="btn btn-primary" href="/places/<%="#{i.id}" %>" >Goto &raquo;</a></p>
+              <p align="center"><a class="btn btn-primary" href="/places/<%="#{i.id}" %>" id="goto_button" >Goto &raquo;</a></p>
             </div>
           </div>
         </div>

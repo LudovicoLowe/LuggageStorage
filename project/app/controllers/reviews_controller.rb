@@ -14,6 +14,11 @@ class ReviewsController < ApplicationController
     redirect_to @place
   end
 
+  def destroy
+    Review.find(params[:id]).delete
+    redirect_to(root_path)
+  end
+
   private
     def review_params
       params.require(:review).permit(:comment, :rating)

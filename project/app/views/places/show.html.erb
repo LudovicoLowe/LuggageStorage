@@ -43,7 +43,7 @@
       <strong>Phone number:</strong> <%= @place.user.phone_number %><br>
       <strong>Email:</strong> <%= @place.user.email %><br>
       <strong>Rating:</strong> <span class="star-rating" data-score="<%= @avg_rating %>"></span><br><br>
-      <% if correct_user?(@place) %>
+      <% if correct_user?(@place) || current_user.admin %>
         <%= link_to 'Edit informations', edit_place_path(@place), class: "btn btn-primary" %>
         <%= link_to 'Delete place', place_path, class: "btn btn-danger", method: :delete %>
       <% end %>
@@ -85,15 +85,15 @@
         <% when 1 %>
           <img src="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
         <% when 2 %>
-          <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
+          <img src="../../assets/star-on.png"><img rsrc="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
         <% when 3 %>
           <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-off.png"><img src="../../assets/star-off.png">
         <% when 4 %>
           <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-off.png">
         <% when 5 %>
           <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png">
-        <% end %>
-        <%= review.comment %>
+        <% end %> stars from <a href="/users/<%=User.find(review.user_id).id %>"><%=User.find(review.user_id).name %> <%=User.find(review.user_id).surname %></a>:
+          <%= review.comment %> | <%= link_to "Delete", place_review_path(@place, review), method: :delete %>
         <br>
       <% end %>
       <br>

@@ -14,9 +14,9 @@ Feature: User can add a review on a place
     And I log in
     And Someone has created his place
     And I am on the map page
-    And I click on "Goto &raequo"
+    And I click on "goto_button"
     And I click on "Write a review"
-    And I fill in "Comment" with "Wow"
-    And I fill in "Rating" with "5"
-    And I press "Create Review"
+    And I fill in "comment" with "Wow"
+    And I fill in "rating" with "5"
+    And I press "Create review"
     Then I should see "Wow"

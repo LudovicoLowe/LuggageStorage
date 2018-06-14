@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   get "/places" => redirect("/map")
   get "/new_place" => "places#new"
   get "/users/:id" => "users#show"
+  get "/places/:id/reviews" => "reviews#show_all"
   devise_scope :user do
     get "/login" => "devise/sessions#new"
     get "/edit_profile" => "devise/registrations#edit"
