@@ -14,7 +14,7 @@ Feature: Visitor can create a new account
     And I press "Sign up"
     Then I should be on home page
 
-  Scenario: Can't create a new account (name required)
+  Scenario: Can't create a new account (email required)
     Given I am on the signup page
     When I fill in "reg_name" with "Test"
     And I fill in "reg_surname" with "Sur_test"
@@ -22,4 +22,4 @@ Feature: Visitor can create a new account
     And I fill in "reg_psw" with "12345678"
     And I fill in "reg_conf_psw" with "12345678"
     And I press "Sign up"
-    Then I should be on users page
+    Then I should see "Email can't be blank"

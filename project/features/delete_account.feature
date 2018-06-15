@@ -7,6 +7,6 @@ Feature: User can delete his account
     Given I am a registered user
     And I log in
     When I click on navbar menu
-    And I click on "Profile"
+    And I click on "Edit profile"
     And I click on "Delete account"
     Then I should be on home page

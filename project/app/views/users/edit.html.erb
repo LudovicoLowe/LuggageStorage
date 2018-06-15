@@ -86,8 +86,7 @@
   <% else %>
     <h3>Delete your account</h3>
   <% end %>
-  <p><%= button_to "Delete account", user_path(@user), class: 'btn btn-danger',
-                   data: {confirm: "Are you sure?"}, method: :delete %>
+  <p><%= button_to "Delete account", user_path(@user), class: 'btn btn-danger', method: :delete %>
   </p>
 
 </div>

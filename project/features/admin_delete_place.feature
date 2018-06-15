@@ -10,4 +10,4 @@ Feature: Admin can delete user's place
     And I click on "Map"
     And I click on "goto_button"
     And I click on "Delete place"
-    Then I should be on home page
+    Then I should see "Luggage Storage"

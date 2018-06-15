@@ -6,4 +6,4 @@ Feature: Visitor can learn about the site
   Scenario: Go to the about page
     Given I am on the home page
     When I click on "About"
-    Then I should be on about page
+    Then I should see "Contacts"

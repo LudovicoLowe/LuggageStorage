@@ -12,4 +12,4 @@ Feature: Admin can delete an user's account
     And I click on "Tester Sur_tester"
     And I click on "Edit user"
     And I press "Delete account"
-    Then I should be on map page
+    Then I should see "Nearest places"

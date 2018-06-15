@@ -24,11 +24,15 @@ When /^(?:|I )press "([^"]*)"$/ do |button|
 end
 
 Then /^I should be on login page$/ do
-  assert page.current_path == new_user_session_path
+  steps %Q{
+    Then I should see "Login"
+  }
 end
 
 Then /^I should be on signup page$/ do
-  assert page.current_path == login_path
+  steps %Q{
+    Then I should see "Signup"
+  }
 end
 
 Then /^I should be on users page$/ do
@@ -36,15 +40,21 @@ Then /^I should be on users page$/ do
 end
 
 Then /^I should be on home page$/ do
-  assert page.current_path == root_path
+  steps %Q{
+    Then I should see "Luggage Storage"
+  }
 end
 
 Then /^I should be on about page$/ do
-  assert page.current_path == about_path
+  steps %Q{
+    Then I should see "Contacts"
+  }
 end
 
 Then /^I should be on map page$/ do
-  assert page.current_path == map_path
+  steps %Q{
+    Then I should see "Nearest places"
+  }
 end
 
 Given /^There is at least one place$/ do
@@ -61,7 +71,9 @@ Given(/^I am on the signup page$/) do
 end
 
 Then /^I should be on profile page$/ do
-  assert page.current_path == profile_path
+  steps %Q{
+    Then I should see "Profile Picture"
+  }
 end
 
 Given /^I log in$/ do
@@ -114,11 +126,15 @@ end
 
 
 Then /^I should display a map$/ do
-  assert page.current_path == map_path
+  steps %Q{
+    Then I should see "Nearest places"
+  }
 end
 
 Then(/^I should be on edit profile page$/) do
-  assert page.current_path == edit_profile_path
+  steps %Q{
+    Then I should see "Edit your informations"
+  }
 end
 
 Then(/^I should be on my place page$/) do
@@ -134,7 +150,7 @@ Then /^(?:|I )should see "([^"]*)"$/ do |text|
 end
 
 Then /^(?:|I )should not see "([^"]*)"$/ do |text|
-  assert !page.has_content?(text)
+  page.body.should_not include(text)
 end
 
 When(/^I click on navbar menu$/) do
