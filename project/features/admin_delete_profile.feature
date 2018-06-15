@@ -1,7 +1,7 @@
-Feature: Admin can edit a user account
+Feature: Admin can delete an user's account
   As an Admin
-  I want to edit an user's account
-  So that I will change any unwanted content or errors
+  I want to delete an user's account
+  So that he won't be able to use the site as a user
 
   Scenario: Admin edits user's account
     Given I am an admin
@@ -11,6 +11,5 @@ Feature: Admin can edit a user account
     And I click on "goto_button"
     And I click on "Tester Sur_tester"
     And I click on "Edit user"
-    And I fill in "Name" with "Paolo"
-    And I press "Update"
-    Then I should see "Paolo"
+    And I press "Delete account"
+    Then I should be on map page

@@ -146,6 +146,10 @@ And (/^Someone has created his place$/) do
   Place.create(:id => 1, :name => "Casa Temp", :state => "Italy", :city => "Rome", :address => "Via Ariccia 34", :cap => "00179", :description => "Temp place", :user_id => 2)
 end
 
+And (/^That place has been reviewed$/) do
+  Review.create(:id => 1, :rating => 5, :comment => "Wow", :user_id => 2, :place_id => 1)
+end
+
 Then /^I should see the image$/ do
   Place.last.image != nil
 end

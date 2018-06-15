@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     respond_to do |format|
       if update_resource(@user, user_params)
-        format.html { redirect_to root_path, notice: 'user was successfully updated.' }
+        format.html { redirect_to user_path(@user), notice: 'user was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
@@ -32,6 +32,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    @u_id = params[:id]
+    @place = Place.where(user_id: @u_id).first
+    Place.destroy(@place.id)
     User.find(params[:id]).destroy
     redirect_to map_path
   end

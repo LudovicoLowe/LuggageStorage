@@ -93,7 +93,7 @@
         <% when 5 %>
           <img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png"><img src="../../assets/star-on.png">
         <% end %> stars from <a href="/users/<%=User.find(review.user_id).id %>"><%=User.find(review.user_id).name %> <%=User.find(review.user_id).surname %></a>:
-          <%= review.comment %> | <%= link_to "Delete", place_review_path(@place, review), method: :delete %>
+          <%= review.comment %> <% if current_user.admin %><%= link_to "Delete", place_review_path(@place, review), method: :delete %><% end %>
         <br>
       <% end %>
       <br>
