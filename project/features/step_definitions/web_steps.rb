@@ -75,6 +75,24 @@ Given /^I log in$/ do
   }
 end
 
+Given /^I am an admin$/ do
+  User.create(:uid => 3, :email => "admin123@gmail.com", :password => "admin123", :password_confirmation => "admin123", :name => "Admin", :surname => "Admin", :phone_number => "3281743104", :admin => true)
+end
+
+And /^I login as an admin$/ do
+  steps %Q{
+    Given I am on the login page
+    When I fill in "login_email" with "admin123@gmail.com"
+    And I fill in "login_password" with "admin123"
+    And I press "Log in"
+    Then I should be on home page
+  }
+end
+
+And /^I add my image "([^"]*)"$/ do |string|
+  Place.last.image = string
+end
+
 Given /^I have created my place$/ do
   steps %Q{
     Given I am a registered user
@@ -126,4 +144,8 @@ end
 And (/^Someone has created his place$/) do
   User.create({:uid => 2, :email => "12345678911@gmail.com", :password => "12345678", :password_confirmation => "12345678", :name => "Tester", :surname => "Sur_tester", :phone_number => "3331112345"})
   Place.create(:id => 1, :name => "Casa Temp", :state => "Italy", :city => "Rome", :address => "Via Ariccia 34", :cap => "00179", :description => "Temp place", :user_id => 2)
+end
+
+Then /^I should see the image$/ do
+  Place.last.image != nil
 end

@@ -25,9 +25,12 @@ Rails.application.routes.draw do
   get "/new_place" => "places#new"
   get "/users/:id" => "users#show"
   get "/places/:id/reviews" => "reviews#show_all"
+  get "users/:id/edit" => "users#edit", as: "edit_user"
+  resources :users
+
   devise_scope :user do
     get "/login" => "devise/sessions#new"
-    get "/edit_profile" => "devise/registrations#edit"
+    get "/users/:id/edit" => "devise/registrations#edit"
     #where omniauth_callback is the controller I made when following the Railscast
     get "users/auth/facebook/setup" => "omniauth_callbacks#setup"
   end
