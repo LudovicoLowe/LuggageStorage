@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Place, type: :model do
   describe "Creazione Place senza nome" do
     it "dovrebbe non essere valida" do
-      place = Place.create(:state => "Italy", :city => "Rome", :address => "Via Ariccia 34", :cap => "00179", :description => "Temp place", :user_id => 1)
+      place = Place.new(:state => "Italy", :city => "Rome", :address => "Via Ariccia 34", :cap => "00179", :description => "Temp place", :user_id => 1)
       expect(place).not_to be_valid
     end
   end
